@@ -1,2 +1,4 @@
 django==4
 uvicorn
+django-configurations
+environs
