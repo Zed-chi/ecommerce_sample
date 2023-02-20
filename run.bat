@@ -1,0 +1,1 @@
+uvicorn _shop.asgi:application --reload 
