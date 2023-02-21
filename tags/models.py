@@ -5,7 +5,7 @@ from products.models import Product
 from products.util import unique_slug_generator
 
 
-class Tag(model.Model):
+class Tag(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField()
     active = models.BooleanField()
@@ -15,9 +15,9 @@ class Tag(model.Model):
         return self.title
 
 
-def tah_pre_save_receiver(sender, instance, *atgs, **kwargs):
+def tag_pre_save_receiver(sender, instance, *atgs, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
 
 
-pre_save.connect(product_pre_save_receiver, sender=Tag)
+pre_save.connect(tag_pre_save_receiver, sender=Tag)
