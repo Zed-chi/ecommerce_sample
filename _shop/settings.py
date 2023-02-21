@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from configurations import Configuration
+from configurations import Configuration, values
 from environs import Env
 
 env = Env()
@@ -11,6 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class Dev(Configuration):
+    DOTENV = os.path.join(BASE_DIR, ".env")
     SECRET_KEY = (
         "django-insecure-$hl^e%q-y6vrl29w7jdshquikf8-n-y&a%dfsduxu-bd3-!sp$"
     )
@@ -24,6 +25,8 @@ class Dev(Configuration):
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
+        "main",
+        "products",
     ]
 
     MIDDLEWARE = [
