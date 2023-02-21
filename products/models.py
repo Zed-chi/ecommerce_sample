@@ -43,6 +43,9 @@ class ProductManager(models.Manager):
     def all(self):
         return self.get_queryset().active()
 
+    def search(query:str):
+        lookups = Q(title__icontains=query) | Q(description__icontains=query)
+        return Product.objects.active().filter(lookups).distinct()
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
