@@ -27,6 +27,7 @@ class Dev(Configuration):
         "django.contrib.staticfiles",
         "main",
         "products",
+        "search",
     ]
 
     MIDDLEWARE = [
