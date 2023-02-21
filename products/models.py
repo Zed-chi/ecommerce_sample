@@ -3,6 +3,7 @@ import random
 import time
 
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_save, pre_save
 
 from .util import unique_slug_generator
@@ -37,15 +38,16 @@ class ProductManager(models.Manager):
         if qs.count() == 1:
             return qs.first()
 
-    def featured(self):
-        return self.get_queryset().featured()
-
     def all(self):
         return self.get_queryset().active()
 
-    def search(query: str):
-        lookups = Q(title__icontains=query) | Q(description__icontains=query)
-        return Product.objects.active().filter(lookups).distinct()
+    def search(self, query: str):
+        lookups = (
+            Q(title__icontains=query)
+            | Q(description__icontains=query)
+            | Q(tag__title__icontains=query)
+        )
+        return self.get_queryset().active().filter(lookups).distinct()
 
 
 class Product(models.Model):
