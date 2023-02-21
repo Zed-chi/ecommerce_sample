@@ -29,6 +29,7 @@ class Dev(Configuration):
         "products",
         "search",
         "tags",
+        "cart",
     ]
 
     MIDDLEWARE = [
