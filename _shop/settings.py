@@ -12,9 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 class Dev(Configuration):
     DOTENV = os.path.join(BASE_DIR, ".env")
-    SECRET_KEY = (
-        "django-insecure-$hl^e%q-y6vrl29w7jdshquikf8-n-y&a%dfsduxu-bd3-!sp$"
-    )
+    SECRET_KEY = env.Env("DJANGO_SECRET_KEY")
     DEBUG = True
     ALLOWED_HOSTS = ["*"]
 
