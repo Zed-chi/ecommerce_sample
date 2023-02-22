@@ -7,7 +7,7 @@ User = get_user_model()
 
 
 def homepage(req):
-    return render(req, "homepage.html", context={"x": "azxc"})
+    return render(req, "main/index.html", context={"x": "azxc"})
 
 
 def about_page(req):
