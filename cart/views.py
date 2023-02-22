@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from .models import Cart
 
 
-# Create your models here.
 def cart_home(req):
-    req.session["cart_id"] = req.user
-    req.session["user"] = req.user.username
+    cart_id = req.session.get("cart_id", None)
+    if not cart_id:        
+        cart = Cart.objects.create(user=req.user)
+        req.session["cart_id"] = cart.id        
+    else:        
+        cart = Cart.objects.get(pk=cart_id)
     return render(req, "cart/home.html")
