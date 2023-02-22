@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 class Dev(Configuration):
     DOTENV = os.path.join(BASE_DIR, ".env")
-    SECRET_KEY = env.Env("DJANGO_SECRET_KEY")
+    SECRET_KEY = env.str("DJANGO_SECRET_KEY")
     DEBUG = True
     ALLOWED_HOSTS = ["*"]
 
